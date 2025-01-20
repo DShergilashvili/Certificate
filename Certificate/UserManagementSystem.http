@@ -1,0 +1,54 @@
+@Certificate_HostAddress = http://localhost:5086
+
+###
+GET {{Certificate_HostAddress}}/api/users
+Authorization: securetoken
+
+###
+GET {{Certificate_HostAddress}}/api/users/1
+Authorization: securetoken
+
+###
+POST {{Certificate_HostAddress}}/api/users
+Content-Type: application/json
+Authorization: securetoken
+
+{
+    "id":4,
+    "name": "Doe",
+    "email": "doe@example.com"
+}
+
+### Invalid POST Request
+POST {{Certificate_HostAddress}}/api/users
+Content-Type: application/json
+Authorization: securetoken
+
+{
+    "id":4,
+    "name": "Doe",
+    "email": "invalidemail"
+}
+
+###
+PUT {{Certificate_HostAddress}}/api/users/4
+Content-Type: application/json
+Authorization: securetoken
+
+{
+    "id":4,
+    "name": "Doe",
+    "email": "doe@newdomain.com"
+}
+
+###
+DELETE {{Certificate_HostAddress}}/api/users/4
+Authorization: securetoken
+
+### Bad Request
+DELETE {{Certificate_HostAddress}}/api/users/10
+Authorization: securetoken
+
+###
+GET {{Certificate_HostAddress}}/division?numerator=10&denominator=0
+Authorization: securetoken
